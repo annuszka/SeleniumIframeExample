@@ -1,9 +1,8 @@
 package tests;
 
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pages.IframePage;
 
@@ -15,10 +14,9 @@ public class IframeTest extends Hooks {
     String expectedH2Text = "Iframe - Target for a Link";
 
     @BeforeTest
-    public void setup() {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("start-maximized");
-        driver = new ChromeDriver(options);
+    @Parameters("browser")
+    public void setup(String browser) {
+        driver = chooseDriver(browser);
         driver.get(BASE_URL);
         iframePage = new IframePage(driver);
     }
