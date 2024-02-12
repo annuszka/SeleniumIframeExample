@@ -1,24 +1,18 @@
+package tests;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeSuite;
 
-import java.time.Duration;
 
 public class Hooks {
-    private static final String BASE_URL = "https://www.w3schools.com/html/tryit.asp?filename=tryhtml_iframe_target";
+    protected static final String BASE_URL = "https://www.w3schools.com/html/tryit.asp?filename=tryhtml_iframe_target";
     protected WebDriver driver;
-    protected WebDriverWait wait;
 
-
-    @BeforeTest
+    @BeforeSuite
     public void setup() {
         WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(4));
-        driver.get(BASE_URL);
     }
 
     @AfterTest
